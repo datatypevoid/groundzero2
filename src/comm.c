@@ -184,7 +184,12 @@ void
 argument_error ()
 {
     fprintf(stderr,
-            "Syntax: ground0 -p <port> -l <logdir> -s <scenario>\n");
+            "Syntax: ground0 <arguments>\n"
+	    "-p <port>      Specify the port to listen on\n"
+	    "-l <logdir>    Specify an alternate log directory.\n"
+ 	    "-s <scenario>  Select which scenario to load.\n"
+	    "-c             Cold boot.\n"
+	    "-C             Cold boot and never warm boot.\n");
     exit(STATUS_BOOT_ERROR);
 }
 
