@@ -384,7 +384,7 @@ init_socket (int port)
 
     if ( bind(fd, (struct sockaddr *) &sa, sizeof(sa)) < 0 )
     {
-        fprintf(stderr, "bind() failed.  Retrying . . .\n");
+        fprintf(stderr, "bind() failed.  Retrying...\n");
         while ( bind(fd, (struct sockaddr *) &sa, sizeof(sa)) < 0 )
             sleep(1);
     }
