@@ -1460,8 +1460,13 @@ get_god (char *a_name)
     return NULL;
 }
 
-/* ok, so who exactly runs this place? (this is hard coded instead of being
-   thrown into a boot file for security reasons */
+/* This was "hard coded for security reasons" by previous maintainers at some point. */
+
+/* Format is {"Login name", Trust Level, "Character name", "login name's password", ""}
+ * For example: {"Greg", 10, "Snoopy", "password", ""} to login as Greg and play
+ * the character named Snoopy.  Note that "password" applies to Greg and not Snoopy, which
+ * must have its own separate password. Trust levels are shown in src/ground0.h */
+
 const struct god_type imp_table[] = {
     {"", 0, "", "", ""}
 };
