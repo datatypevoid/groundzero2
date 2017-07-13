@@ -63,7 +63,7 @@ void check_multiplayer(const char *);
 void recalc_num_on();
 
 GOD_TYPE *get_god(char *a_name);
-ushort port = 4000;
+ushort port = 32000;
 extern char *scenario_name;
 extern int enforcer_depress;
 
