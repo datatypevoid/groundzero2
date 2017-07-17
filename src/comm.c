@@ -1443,17 +1443,22 @@ GOD_TYPE *
 get_god (char *a_name)
 {
     sh_int count;
+    int ikeys, gkeys;
     char *the_first, the_second[MAX_STRING_LENGTH];
 
-    the_first = capitalize(a_name);
+    ikeys = sizeof(GOD_TYPE)/sizeof(imp_table[0]);
+    gkeys = sizeof(GOD_TYPE)/sizeof(god_table[0]);
+    the_first = capitalize(a_name);    
 
+    // the_first changes during iteration below, so make a copy
     for ( count = 0; the_first[count]; count++ )
-        the_second[count] = the_first[count];
+	the_second[count] = the_first[count];
     the_second[count] = 0;
-    for ( count = 0; imp_table[count].rl_name[0]; count++ )
+
+    for ( count = 0; count < ikeys; count++ )
         if ( !str_cmp(the_second, capitalize(imp_table[count].rl_name)) )
-            return (GOD_TYPE *) (imp_table + count);
-    for ( count = 0; god_table[count].rl_name[0]; count++ )
+ 	           return (GOD_TYPE *) (imp_table + count);
+    for ( count = 0; count < gkeys; count++ )
         if ( !str_cmp(the_second, capitalize(god_table[count].rl_name)) )
             return (GOD_TYPE *) (god_table + count);
 
@@ -1468,7 +1473,7 @@ get_god (char *a_name)
  * must have its own separate password. Trust levels are shown in src/ground0.h */
 
 const struct god_type imp_table[] = {
-    {"", 0, "", "", ""}
+    {"Test", 10, "Test", "test", ""}
 };
 
 
