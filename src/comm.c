@@ -1444,22 +1444,23 @@ get_god (char *a_name)
 {
     sh_int count;
     int ikeys, gkeys;
-    char *the_first, the_second[MAX_STRING_LENGTH];
+    char *nameptr, namearr[MAX_STRING_LENGTH];
 
     ikeys = sizeof(GOD_TYPE)/sizeof(imp_table[0]);
     gkeys = sizeof(GOD_TYPE)/sizeof(god_table[0]);
-    the_first = capitalize(a_name);    
+    nameptr = capitalize(a_name);    
 
-    // the_first changes during iteration below, so make a copy
-    for ( count = 0; the_first[count]; count++ )
-	the_second[count] = the_first[count];
-    the_second[count] = 0;
+    // nameptr changes during iteration below, so make a copy
+    for ( count = 0; nameptr[count]; count++ )
+	namearr[count] = nameptr[count];
+    // Add nul to the end
+    namearr[count] = 0;
 
     for ( count = 0; count < ikeys; count++ )
-        if ( !str_cmp(the_second, capitalize(imp_table[count].rl_name)) )
+        if ( !str_cmp(namearr, capitalize(imp_table[count].rl_name)) )
  	           return (GOD_TYPE *) (imp_table + count);
     for ( count = 0; count < gkeys; count++ )
-        if ( !str_cmp(the_second, capitalize(god_table[count].rl_name)) )
+        if ( !str_cmp(namearr, capitalize(god_table[count].rl_name)) )
             return (GOD_TYPE *) (god_table + count);
 
     return NULL;
